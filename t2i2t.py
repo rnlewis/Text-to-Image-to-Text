@@ -63,7 +63,7 @@ def str2img(str,size=16):
         print('Image Saved to Local Directory: {}\{}'.format(getcwd(),fn))
         img.show()
     else:
-        print('Something went wrong during Encoding. Please contact the author.')
+        print('A character was used which the program could not encode. Please use standard 7-bit ASCII characters')
 
 
 #Converts linear Image PNG file to ASCII characters
@@ -74,21 +74,27 @@ def img2str(im):
         img = im
     colors = []
     h = img.height
+    #Get number of Color Squares in Image: Square Width == Image Height
     for i in range(img.width//h):
+        #Create list of all colors in picture in order
         col = img.getpixel((i*h,0))
         colors.append(col)
+    #Turn RGB Values to Hex
     for i in range(len(colors)):
         col = list(colors[i])
         for j in range(len(col)):
             val = hex(col[j])[2:]
             if len(val)<2:
-                val = val + '0'
+                val = '0' + val
             col[j] = val
         colors[i] = '{}{}{}'.format(col[0],col[1],col[2])
+    #Remove extra bits added to colors from str2img
     while '00' in colors[len(colors)-1]:
         colors[len(colors)-1] = colors[len(colors)-1][:len(colors[len(colors)-1])-2]
+    #Combine colors to one Hex string
     line = ''.join(colors)
+    #Add 0 to properly read ASCII and translate to binary
     bi = '0'+bin(int(line,16))[2:]
-    str = bin2str(bi)
-    return str
+    #bin2str
+    return bin2str(bi)
 

@@ -18,7 +18,7 @@ def encode():
         size = 16
     print('Tile Height: {}'.format(size))
     print('Generating Image...')
-    str2img(line)
+    str2img(line,size)
     print()
     __main__()
     
