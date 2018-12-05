@@ -10,17 +10,21 @@ chdir(__file__.replace(path.basename(__file__),''))
       
 def encode():
     line = input('Write the text you wish to be Encoded:\n')
-    try:
-        size = int(input('Color tile height in pixels (1,256; def:16): '))
-        if size < 1 or size > 256:
+    if line != '':
+        try:
+            size = int(input('Color tile height in pixels (1,256; def:16): '))
+            if size < 1 or size > 256:
+                size = 16
+        except:
             size = 16
-    except:
-        size = 16
-    print('Tile Height: {}'.format(size))
-    print('Generating Image...')
-    str2img(line,size)
-    print()
-    __main__()
+        print('Tile Height: {}'.format(size))
+        print('Generating Image...')
+        str2img(line,size)
+        print()
+        __main__()
+    else:
+        print('Please use standard 7-bit ASCII characters\n')
+        __main__()
     
 def decode():
     print('Please choose a filename from {}:'.format(getcwd()))

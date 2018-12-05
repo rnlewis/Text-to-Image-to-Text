@@ -5,18 +5,21 @@ from os import *
 #Date: 12/4/18
 
 chdir(__file__.replace(path.basename(__file__),''))
-
 #Converts string into ASCII byte
 def str2bin(str):
-    bi = ''
-    for i in str:
-        #chr to ascii
-        a = bin(ord(i))[2:]
-        #add 0's before ascii to make str length = 8
-        z = '0'*(8-len(a))
-        #append bin to str
-        bi = bi+z+a
-    return bi
+    if str != '':
+        bi = '' 
+        for i in str:
+            #chr to ascii
+            a = bin(ord(i))[2:]
+            #add 0's before ascii to make str length = 8
+            z = '0'*(8-len(a))
+            #append bin to str
+            bi = bi+z+a
+        return bi
+    else:
+        print('Please use standard 7-bit ASCII characters')
+        return None
     
 #Converts binary string to ASCII characters
 def bin2str(bi):
