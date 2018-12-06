@@ -38,7 +38,6 @@ def str2img(str,size=16):
     h = hex(int(line,2))[2:]
     while len(h)%6 != 0:
         h = h + '00'
-        
     h1 = []
 
     for i in range(len(h)//6):
@@ -52,7 +51,6 @@ def str2img(str,size=16):
     for i in range(len(h1)):
         col = Image.new('RGB',(size,size),'#'+h1[i])
         img.paste(col,(i*size,0))
-
     #Test Successful Conversion
     if str == img2str(img):
         print('Successful Encoding')
@@ -65,6 +63,7 @@ def str2img(str,size=16):
         img.save(fn)
         print('Image Saved to Local Directory: {}\{}'.format(getcwd(),fn))
         img.show()
+        return img
     else:
         print('A character was used which the program could not encode. Please use standard 7-bit ASCII characters')
 
@@ -97,7 +96,7 @@ def img2str(im):
     #Combine colors to one Hex string
     line = ''.join(colors)
     #Add 0 to properly read ASCII and translate to binary
-    bi = '0'+bin(int(line,16))[2:]
+    bi = bin(int(line,16))[2:]
+    bi = '0'*(8-len(bi)%8)+bi
     #bin2str
     return bin2str(bi)
-
