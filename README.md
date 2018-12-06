@@ -1,5 +1,5 @@
 # Text-to-Image-to-Text
-Encodes strings of ASCII values to Image data and Decodes Image data (specific format) back into ASCII characters.
+Encodes strings of ASCII values to Image data and Decodes the Image data back into ASCII characters.
 
 Requires PIL Python Image Library
 
